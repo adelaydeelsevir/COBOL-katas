@@ -1,6 +1,6 @@
 # COBOL-Roman-Numerals-Kata-Solution
 
-Solution to the Roman Numbers kata written in COBOL using COBOL 2000 user-defined functions.  I used OpenCOBOL IDE to program this and versin 2.0 of the GnuCOBOL compiler.
+Solution to the Roman Numbers kata written in COBOL using COBOL 2002 user-defined functions.  I used OpenCOBOL IDE to program this and versin 2.0 of the GnuCOBOL compiler.
 
 Having failed to get either of the free software unit testing frameworks for COBOL to work, I've opted for writing tests myself.
 
@@ -32,7 +32,7 @@ Examples:
   47 -> "XLVII"  (40 -> "XL" + 7 -> "VII")
 ```
 
-To run the code, you'll need version 2.0 of the free GnuCOBOL compiler and the two files (main code and user defined function for calculating if a year is a leap year).
+To run the code, you'll need version 2.0 of the free GnuCOBOL compiler (to support user-defined functions) and the two files (test file and user defined function for converting Arabic dates to Roman dates).
 ```
 $ cobc --free ArabicToRoman.cbl 
 $ cobc -x -free RomanNumeralsTest.cbl 
