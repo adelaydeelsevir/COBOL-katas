@@ -1,9 +1,11 @@
+# COBOL-Roman-Numerals-Kata-Solution
+
 Solution to the Roman Numbers kata written in COBOL using COBOL 2000 user-defined functions.  I used OpenCOBOL IDE to program this and versin 2.0 of the GnuCOBOL compiler.
 
 Having failed to get either of the free software unit testing frameworks for COBOL to work, I've opted for writing tests myself.
 
 Here's the Kata (taken from cyber-dojo.org):
-
+```
 Given a positive integer number (eg 42) determine
 its Roman numeral representation as a String (eg "XLII").
 
@@ -28,4 +30,18 @@ Examples:
 2008 -> "MMVIII" (2000 -> "MM" + 8 -> "VIII")
   99 -> "XCIX"   (90 -> "XC" + 9 -> "IX")
   47 -> "XLVII"  (40 -> "XL" + 7 -> "VII")
+```
 
+To run the code, you'll need version 2.0 of the free GnuCOBOL compiler and the two files (main code and user defined function for calculating if a year is a leap year).
+```
+$ cobc --free ArabicToRoman.cbl 
+$ cobc -x -free RomanNumeralsTest.cbl 
+$ ./RomanNumeralsTest 
+Test 01 passed 1990 = MCMXC                                   
+Test 02 passed 2008 = MMVIII                                  
+Test 03 passed 0047 = XLVII                                   
+Test 04 passed 0099 = XCIX                                    
+Test 05 passed 2525 = MMDXXV                                  
+Test 06 passed 5999 = MMMMMCMXCIX 
+$
+```
