@@ -36,9 +36,6 @@ working-storage section.
 01 ArabicNumber pic 9(4) value zero.
 01 ExpectedResult pic x(40) value spaces.
 01 ReturnedResult pic x(40) value spaces.
-
-01 NumberOfTests pic 99 value 3.
-
 01 CurrentTest pic 99 value 1.
 
 procedure division.
