@@ -28,7 +28,7 @@ working-storage section.
 01 CurrentDoor     pic 999.
 
 procedure division.
-perform with test before varying DoorToStartWith from 1 by 1 until DoorToStartWith greater than NumberOfDoors
+perform varying DoorToStartWith from 1 by 1 until DoorToStartWith greater than NumberOfDoors
     perform varying CurrentDoor from DoorToStartWith by 1 until CurrentDoor greater than NumberOfDoors
         evaluate true
             when DoorIsOpen(CurrentDoor) set DoorIsClosed(CurrentDoor) to true
