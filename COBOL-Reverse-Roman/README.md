@@ -2,7 +2,7 @@
 
 Solution to the Reverse Roman kata written in COBOL using COBOL 2002 user-defined functions.  I used OpenCOBOL IDE to program this and versin 2.0 of the GnuCOBOL compiler.
 
-Having failed to get either of the free software unit testing frameworks for COBOL to work, I've opted for writing tests myself using my own nacsent set of COBOL sub-programs.
+Having failed to get either of the free software unit testing frameworks for COBOL to work, I've opted for writing tests myself using [my own nacsent set of COBOL sub-programs](https://github.com/mikebharris/COBOL-Test-Suite).
 
 Here's the Kata (taken from cyber-dojo.org):
 ```
