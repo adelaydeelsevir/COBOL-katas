@@ -36,7 +36,6 @@ working-storage section.
 01 InputValue pic x(40) value spaces.
 01 ExpectedResult pic 9(4) value zero.
 01 ReturnedResult pic 9(4) value zero.
-01 CurrentTest pic 99 value zero.
 
 procedure division.
 
