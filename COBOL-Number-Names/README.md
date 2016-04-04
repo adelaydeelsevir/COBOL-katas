@@ -21,8 +21,8 @@ Spell out a number. For example
 ```
 ## Thoughts
 I found this one really hard for some reason; it took me ages to do.  I kept trying to produce
-something that was neeter and more efficient than nested IF statements or large EVALUATES.  I'm
-still not happy with the result; though I think it's fairly readable, clean-ish and passes all
+something that was neater and more efficient than having to use nested IF statements or the large, complex EVALUATE statement.  I'm
+still not satisfied with the result; though I think code is quite readable, reasonably 'clean' and passes all
 the tests.  I feel it's done in a way that possibly doesn't take full advantage of the COBOL-way
 of doing things.
 
