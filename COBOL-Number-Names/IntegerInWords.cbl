@@ -11,58 +11,60 @@ data division.
     local-storage section.
         01 NumberToConvert pic 999999999 value zeros.
 
-        01 NumberInParts.
-            02 UnitsPart pic 999 value zeroes.
-            02 ThousandsPart pic 999 value zeroes.
-            02 MillionsPart pic 999 value zeroes.
-
-        01 NumberInWords.
-            02 MillionsInWords pic x(30) value spaces.
-            02 ThousandsInWords pic x(30) value spaces.
+        01 WorkingValuesTable.
+            02 Units pic 999 value zeroes.
             02 UnitsInWords pic x(30) value spaces.
+            02 Thousands pic 999 value zeroes.
+            02 ThousandsInWords pic x(30) value spaces.
+            02 Millions pic 999 value zeroes.
+            02 MillionsInWords pic x(30) value spaces.
 
     linkage section.
         01 InputValue pic 9 any length.
-        01 StringValue  pic x(255).
+        01 NumberInWords  pic x(255).
 
-procedure division using InputValue returning StringValue.
+procedure division using InputValue returning NumberInWords.
 
-    initialize NumberToConvert, NumberInParts, NumberInWords
+    initialize NumberToConvert, WorkingValuesTable
     move InputValue to NumberToConvert
-    move NumberToConvert(1:3) to MillionsPart
-    move NumberToConvert(4:3) to ThousandsPart
-    move NumberToConvert(7:3) to UnitsPart
+    move NumberToConvert(1:3) to Millions
+    move NumberToConvert(4:3) to Thousands
+    move NumberToConvert(7:3) to Units
 
-    move ThreeDigitNumberInWords(UnitsPart) to UnitsInWords
-    move ThreeDigitNumberInWords(ThousandsPart) to ThousandsInWords
-    move ThreeDigitNumberInWords(MillionsPart) to MillionsInWords
+    move ThreeDigitNumberInWords(Units) to UnitsInWords
+    move ThreeDigitNumberInWords(Thousands) to ThousandsInWords
+    move ThreeDigitNumberInWords(Millions) to MillionsInWords
 
-    evaluate MillionsPart also ThousandsPart also UnitsPart
+    evaluate Millions also Thousands also Units
     when 0 also 0 also > 0
-        move UnitsInWords to StringValue
+        move UnitsInWords to NumberInWords
     when 0 also > 0 also 0
-        move concatenate(trim(ThousandsInWords), " thousand") to StringValue
+        move concatenate(trim(ThousandsInWords), " thousand") to NumberInWords
     when 0 also > 0 also < 100
-        move concatenate(trim(ThousandsInWords), " thousand and ", UnitsInWords) to StringValue
+        move concatenate(trim(ThousandsInWords), " thousand and ",
+        UnitsInWords) to NumberInWords
     when 0 also > 0 also >= 100
-        move concatenate(trim(ThousandsInWords), " thousand, ", UnitsInWords) to StringValue
+        move concatenate(trim(ThousandsInWords), " thousand, ",
+        UnitsInWords) to NumberInWords
     when > 0 also 0 also 0
-        move concatenate(trim(MillionsInWords), " million") to StringValue
+        move concatenate(trim(MillionsInWords), " million") to NumberInWords
     when > 0 also 0 also < 100
-        move concatenate(trim(MillionsInWords), " million and ", UnitsInWords) to StringValue
+        move concatenate(trim(MillionsInWords), " million and ",
+        UnitsInWords) to NumberInWords
     when > 0 also 0 also >= 100
-        move concatenate(trim(MillionsInWords), " million, ", UnitsInWords) to StringValue
+        move concatenate(trim(MillionsInWords), " million, ",
+        UnitsInWords) to NumberInWords
     when > 0 also > 0 also 0
         move concatenate(trim(MillionsInWords), " million, ",
-                        trim(ThousandsInWords), " thousand") to StringValue
+        trim(ThousandsInWords), " thousand") to NumberInWords
     when > 0 also > 0 also < 100
         move concatenate(trim(MillionsInWords), " million, ",
         trim(ThousandsInWords), " thousand and ",
-        trim(UnitsInWords)) to StringValue
+        trim(UnitsInWords)) to NumberInWords
     when > 0 also > 0 also >= 100
         move concatenate(trim(MillionsInWords), " million, ",
         trim(ThousandsInWords), " thousand, ",
-        trim(UnitsInWords)) to StringValue
+        trim(UnitsInWords)) to NumberInWords
     end-evaluate
 
     goback
