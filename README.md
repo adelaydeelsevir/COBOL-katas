@@ -9,3 +9,4 @@ Katas taken from http://cyber-dojo.org
 1. [Reverse Roman](https://github.com/mikebharris/COBOL-katas/tree/master/COBOL-Reverse-Roman)
 2. [100 Doors](https://github.com/mikebharris/COBOL-katas/tree/master/COBOL-100-Doors)
 3. [Number Names](https://github.com/mikebharris/COBOL-katas/tree/master/COBOL-Number-Names)
+4. [Monty Hall](https://github.com/mikebharris/COBOL-katas/tree/master/COBOL-Monty-Hall)
