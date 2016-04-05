@@ -22,7 +22,8 @@ procedure division.
     compute DoorThatHasCar = function random(Seed)
     compute DoorThatHasCar = (function random * 3) + 1
 
-    perform with test after varying Round from 1 by 1 until Round equal to NumberOfRoundsToPlay
+    perform with test after varying Round from 1 by 1
+        until Round equal to NumberOfRoundsToPlay
         compute DoorPlayerChooses = (function random * 3) + 1
         if DoorThatHasCar equal to DoorPlayerChooses then
             add 1 to WinsWhenNotSwapping
