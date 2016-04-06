@@ -39,14 +39,16 @@ it easy to compare the effects of each strategy.
 
 The solution to the problem seemed so straight-forward and simple that I was sure I had
 got it wrong, but having looked at various solutions at http://rosettacode.org/wiki/Monty_Hall_problem, it looks right to
-me.  Incidentally my solution appear to be much more readable and less complex than the
+me.  
+
+Incidentally my solution appears to me to be much more readable and less complex than the
 COBOL solution at http://rosettacode.org/wiki/Monty_Hall_problem#COBOL
 
 I think this proves that you can write really clean and readable and modern code even in a
 language as old as COBOL.  It's not so much to do with the language itself, but the way you
 write the code.
 
-To run it do the following:
+Anyway, to run it you need GnuCOBOL 1.x or 2.x installed.  On a UNIX-like OS, do the following:
 ```
 $ cobc -x --free MontyHall.cbl
 squitty:COBOL-Monty-Hall adelayde$ ./MontyHall
@@ -60,3 +62,4 @@ Conclusion is that it's better to swap.
   This makes sense as the probability in the first round of getting
   the correct door is 1/3; whereas in the second, it's 1/2.
 ```
+Windows users you're on your own I'm afraid :P
