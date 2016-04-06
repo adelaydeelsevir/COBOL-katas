@@ -20,10 +20,10 @@ procedure division.
 
     accept CurrentTime from time
     compute DoorThatHasCar = function random(Seed)
-    compute DoorThatHasCar = (function random * 3) + 1
 
     perform with test after varying Round from 1 by 1
         until Round equal to NumberOfRoundsToPlay
+        compute DoorThatHasCar = (function random * 3) + 1
         compute DoorPlayerChooses = (function random * 3) + 1
         if DoorThatHasCar equal to DoorPlayerChooses then
             add 1 to WinsWhenNotSwapping
@@ -38,14 +38,25 @@ procedure division.
     display "Times correct door selected after swapping:   " WinsWhenSwapping
     display "Times correct door selected without swapping: " WinsWhenNotSwapping
     display spaces
-    if WinsWhenNotSwapping greater than WinsWhenSwapping then
-        display "Conclusion is that it's better not to swap."
-        display "  Which doesn't make much sense, but hey!"
-    else
-        display "Conclusion is that it's better to swap."
-        display "  This makes sense as the probability in the first round of getting"
-        display "  the correct door is 1/3; whereas in the second, it's 1/2."
-    end-if
+
+    evaluate true
+        when WinsWhenNotSwapping greater than WinsWhenSwapping
+            display
+                "Conclusion is that it's better not to swap."
+                "  Which doesn't make much sense, but hey!"
+            end-display
+        when WinsWhenNotSwapping equal to WinsWhenSwapping
+            display
+                "There's no conclusion; they are equal outcomes."
+                "  Which shouldn't really be the case."
+            end-display
+        when other
+            display
+                "Conclusion is that it's better to swap."
+                "  This makes sense as the probability in the first round of getting"
+                "  the correct door is 1/3; whereas in the second, it's 1/2."
+            end-display
+    end-evaluate
 
     stop run.
 
