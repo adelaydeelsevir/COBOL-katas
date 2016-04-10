@@ -3,21 +3,10 @@ program-id. MarsRover.
 
 data division.
 working-storage section.
-    01 GridSize is global.
-        02 MaxWidth pic 9 value zero.
-        02 filler pic x value space.
-        02 MaxHeight pic 9 value zero.
-
-    01 RoverPosition is global.
-        02 XPos pic 9.
-        02 filler pic x value space.
-        02 YPos pic 9.
-        02 filler pic x value space.
-        02 Orientation pic x.
-            88 OrientationIsNorth value "N".
-            88 OrientationIsSouth value "S".
-            88 OrientationIsEast  value "E".
-            88 OrientationIsWest  value "W".
+    copy GridDimensions
+        replacing GridDimensions by ==GridDimensions is global==.
+    copy RoverPosition
+        replacing RoverPosition by ==RoverPosition is global==.
 
 local-storage section.
     01 CurrentInstruction pic 99.
@@ -30,8 +19,8 @@ linkage section.
 procedure division using Command, Parameter.
 
     evaluate function trim(Command)
-        when equals "SetGridSize" move Parameter to GridSize
-        when equals "GetGridSize" move GridSize to Parameter
+        when equals "SetGridSize" move Parameter to GridDimensions
+        when equals "GetGridSize" move GridDimensions to Parameter
         when equals "GetRoverPosition" move RoverPosition to Parameter
         when equals "SelectRover" move Parameter to RoverPosition
         when equals "MoveRover" call "MoveMarsRover" using Parameter
@@ -60,10 +49,10 @@ procedure division using MoveSequence.
             when "R" also OrientationIsEast  set OrientationIsSouth to true
             when "R" also OrientationIsSouth set OrientationIsWest to true
             when "R" also OrientationIsWest  set OrientationIsNorth to true
-            when "M" also OrientationIsNorth if YPos < MaxHeight then add 1 to YPos
-            when "M" also OrientationIsSouth if YPos > 0 then subtract 1 from YPos
-            when "M" also OrientationIsEast  if XPos < MaxWidth then add 1 to XPos
-            when "M" also OrientationIsWest  if XPos > 0 then subtract 1 from XPos
+            when "M" also OrientationIsNorth if YPos < MaxY add 1 to YPos
+            when "M" also OrientationIsSouth if YPos > 0 subtract 1 from YPos
+            when "M" also OrientationIsEast  if XPos < MaxX add 1 to XPos
+            when "M" also OrientationIsWest  if XPos > 0 subtract 1 from XPos
             when other set EndOfSequence to true
         end-evaluate
     end-perform
