@@ -10,7 +10,7 @@ There's five files involved with the current solution:
 
 Note I haven't kept track of two separate rover instances as the input file is sequential I figured there was no need to.
 
-To compile and run it using GnuCOBOL (version 1.x or 2.x), you'll also need the AssertEqual subprogram from COBOL-Simple-Test compiled and in your COBOL library path somewhere.
+To compile and run it using GnuCOBOL (version 1.x or 2.x), you'll also need the AssertEquals subprogram from [COBOL-Test-Suite](https://github.com/mikebharris/COBOL-Test-Suite) compiled and in your COBOL library path somewhere.
 
 ```
 $ cobc --free MarsRover.cbl 
