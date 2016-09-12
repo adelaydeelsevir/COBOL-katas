@@ -23,7 +23,7 @@ working-storage section.
 
     01 ExpectedResult pic 9 usage binary.
     01 ReturnedResult pic 9 usage binary.
-    01 StringToTest   pic x(10).
+    01 StringToTest   pic x(40).
 
 procedure division.
 
@@ -120,6 +120,12 @@ procedure division.
         concatenate(function trim(StringToTest), " returns 1")
 
     move "{()}[[{}]]" to StringToTest
+    move ParenthesesAreBalanced(StringToTest) to ReturnedResult
+    call "AssertEquals" using ReturnedResult, ExpectedResult,
+        concatenate(function trim(StringToTest), " returns 1")
+
+    *> allow for any other characters in between
+    move "sub main { a = (b * c) / (d * e) }" to StringToTest
     move ParenthesesAreBalanced(StringToTest) to ReturnedResult
     call "AssertEquals" using ReturnedResult, ExpectedResult,
         concatenate(function trim(StringToTest), " returns 1")
