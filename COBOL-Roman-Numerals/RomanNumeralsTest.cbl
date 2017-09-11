@@ -39,50 +39,52 @@ working-storage section.
 01 CurrentTest pic 99 value 1.
 
 procedure division.
-
+Main section.
     move 1990 to ArabicNumber
     move "MCMXC" to ExpectedResult
     move ArabicToRoman(ArabicNumber) to ReturnedResult
-    perform RunTest thru EndRunTest
+    perform RunTest
 
     add 1 to CurrentTest
     move 2008 to ArabicNumber
     move "MMVIII" to ExpectedResult
     move ArabicToRoman(ArabicNumber) to ReturnedResult
-    perform RunTest thru EndRunTest
+    perform RunTest
 
     add 1 to CurrentTest
     move 47 to ArabicNumber
     move "XLVII" to ExpectedResult
     move ArabicToRoman(ArabicNumber) to ReturnedResult
-    perform RunTest thru EndRunTest
+    perform RunTest
 
     add 1 to CurrentTest
     move 99 to ArabicNumber
     move "XCIX" to ExpectedResult
     move ArabicToRoman(ArabicNumber) to ReturnedResult
-    perform RunTest thru EndRunTest
+    perform RunTest
 
     add 1 to CurrentTest
     move 2525 to ArabicNumber
     move "MMDXXV" to ExpectedResult
     move ArabicToRoman(ArabicNumber) to ReturnedResult
-    perform RunTest thru EndRunTest
+    perform RunTest
 
     add 1 to CurrentTest
     move 5999 to ArabicNumber
     move "MMMMMCMXCIX" to ExpectedResult
     move ArabicToRoman(ArabicNumber) to ReturnedResult
-    perform RunTest thru EndRunTest
+    perform RunTest
 
-    stop run.
+    stop run
+    .
 
-RunTest.
+RunTest section.
     if ReturnedResult equals ExpectedResult then
       display "Test " CurrentTest " passed " ArabicNumber " = " ExpectedResult
     else
       display "Test " CurrentTest " failed: expected " ExpectedResult " but got " ReturnedResult
-    end-if.
-EndRunTest.
+    end-if
+    exit section
+    .
 
 end program RomanNumeralsTest.

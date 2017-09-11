@@ -81,58 +81,62 @@ working-storage section.
 01 TotalDaysFormatted pic ZZZ,ZZ9.
 
 procedure division.
+Main section.
 
-move 18010101 to StartDate
-accept EndDate from date yyyymmdd
-compute CurrentDayOfWeek = DayOfWeek(StartDate)
+    move 18010101 to StartDate
+    accept EndDate from date yyyymmdd
+    compute CurrentDayOfWeek = DayOfWeek(StartDate)
 
-perform varying CurrentYear from StartYear by 1 until CurrentYear > EndYear
-    perform varying CurrentMonth from StartMonth by 1
-        until CurrentMonth > 12
-        or CurrentYear = EndYear and CurrentMonth > EndMonth
+    perform varying CurrentYear from StartYear by 1 until CurrentYear > EndYear
+        perform varying CurrentMonth from StartMonth by 1
+            until CurrentMonth > 12
+            or CurrentYear = EndYear and CurrentMonth > EndMonth
 
-        evaluate true also true
-            when MonthIsFebruary also IsLeapYear(CurrentYear) is equal to 1
-                move 29 to DaysInCurrentMonth
-            when other
-                move DaysInMonth(CurrentMonth) to DaysInCurrentMonth
-        end-evaluate
+            evaluate true also true
+                when MonthIsFebruary also IsLeapYear(CurrentYear) is equal to 1
+                    move 29 to DaysInCurrentMonth
+                when other
+                    move DaysInMonth(CurrentMonth) to DaysInCurrentMonth
+            end-evaluate
 
-        perform varying CurrentDay from StartDay by 1 until CurrentDay > DaysInCurrentMonth
-            or CurrentYear = EndYear and CurrentMonth = EndMonth and CurrentDay > EndDay
+            perform varying CurrentDay from StartDay by 1 until CurrentDay > DaysInCurrentMonth
+                or CurrentYear = EndYear and CurrentMonth = EndMonth and CurrentDay > EndDay
 
-            if DayIsThirteenth then
-                add 1 to CountOfTimesFallsOnThirteeth(CurrentDayOfWeek)
-            end-if
+                if DayIsThirteenth then
+                    add 1 to CountOfTimesFallsOnThirteeth(CurrentDayOfWeek)
+                end-if
 
-            if CurrentDayOfWeek is less than NumberOfDaysInWeek then
-                add 1 to CurrentDayOfWeek
-            else
-                move 1 to CurrentDayOfWeek
-            end-if
+                if CurrentDayOfWeek is less than NumberOfDaysInWeek then
+                    add 1 to CurrentDayOfWeek
+                else
+                    move 1 to CurrentDayOfWeek
+                end-if
 
-            add 1 to TotalNumberOfDays
+                add 1 to TotalNumberOfDays
 
+            end-perform
         end-perform
     end-perform
-end-perform
 
-display "Results - Number of occurances of each day"
-display "=========================================="
-display "Start date: " DayName(DayOfWeek(StartDate)) StartDay "/" StartMonth "/" StartYear
-display "End date  : " DayName(DayOfWeek(EndDate)) EndDay "/" EndMonth "/" EndYear
-display spaces
-perform with test after varying CurrentDayOfWeek from 1 by 1
-    until CurrentDayOfWeek equal to NumberOfDaysInWeek
-    display DayName(CurrentDayOfWeek) " : " CountOfTimesFallsOnThirteeth(CurrentDayOfWeek)
-    if CountOfTimesFallsOnThirteeth(CurrentDayOfWeek) is greater than HighestNumberOfOccurances
-        move CountOfTimesFallsOnThirteeth(CurrentDayOfWeek) to HighestNumberOfOccurances
-        move CurrentDayOfWeek to DayThatMostFallsOnThirteen
-    end-if
-end-perform
+    display "Results - Number of occurances of each day"
+    display "=========================================="
+    display "Start date: " DayName(DayOfWeek(StartDate)) StartDay "/" StartMonth "/" StartYear
+    display "End date  : " DayName(DayOfWeek(EndDate)) EndDay "/" EndMonth "/" EndYear
+    display spaces
+    perform with test after varying CurrentDayOfWeek from 1 by 1
+        until CurrentDayOfWeek equal to NumberOfDaysInWeek
+        display DayName(CurrentDayOfWeek) " : " CountOfTimesFallsOnThirteeth(CurrentDayOfWeek)
+        if CountOfTimesFallsOnThirteeth(CurrentDayOfWeek) is greater than HighestNumberOfOccurances
+            move CountOfTimesFallsOnThirteeth(CurrentDayOfWeek) to HighestNumberOfOccurances
+            move CurrentDayOfWeek to DayThatMostFallsOnThirteen
+        end-if
+    end-perform
 
-display space
-display "Therefore the 13th is most often a " DayName(DayThatMostFallsOnThirteen)
-move TotalNumberOfDays to TotalDaysFormatted
-display "Days processed " TotalDaysFormatted
-stop run.
+    display space
+    display "Therefore the 13th is most often a " DayName(DayThatMostFallsOnThirteen)
+    move TotalNumberOfDays to TotalDaysFormatted
+    display "Days processed " TotalDaysFormatted
+    stop run
+    .
+
+end program FridayThe13.

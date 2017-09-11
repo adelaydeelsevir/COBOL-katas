@@ -13,22 +13,22 @@ file-control.
 
 data division.
 file section.
-    fd MarsRoverData.
-        copy GridDimensions
-            replacing GridDimensions by
-            ==GridDimensions.
-                88 EndOfMarsRoverData value high-values==.
+fd MarsRoverData.
+copy GridDimensions
+    replacing GridDimensions by
+    ==GridDimensions.
+        88 EndOfMarsRoverData value high-values==.
 
-        copy RoverPosition replacing RoverPosition by InitialRoverPosition.
+copy RoverPosition replacing RoverPosition by InitialRoverPosition.
 
-        01 Movement.
-            02 MovementSequence pic x(20).
+01 Movement.
+    02 MovementSequence pic x(20).
 
 working-storage section.
-    copy GridDimensions replacing GridDimensions by ExpectedGridDimensions.
-    copy GridDimensions replacing GridDimensions by ReturnedGridDimensions.
-    copy RoverPosition replacing RoverPosition by ExpectedPosition.
-    copy RoverPosition replacing RoverPosition by ReturnedPosition.
+copy GridDimensions replacing GridDimensions by ExpectedGridDimensions.
+copy GridDimensions replacing GridDimensions by ReturnedGridDimensions.
+copy RoverPosition replacing RoverPosition by ExpectedPosition.
+copy RoverPosition replacing RoverPosition by ReturnedPosition.
 
 procedure division.
 
@@ -84,15 +84,18 @@ procedure division.
         concatenate("After ",trim(Movement), ", the final position is ", ExpectedPosition)
 
     close MarsRoverData
-    stop run.
+    stop run
+    .
 
-ReadLineOfData.
+ReadLineOfData section.
     read MarsRoverData
         at end set EndOfMarsRoverData to true
     end-read
-    if EndOfMarsRoverData
+    if EndOfMarsRoverData then
         close MarsRoverData
         display "End of data reached"
-        stop run.
+        exit section
+    end-if
+    .
 
 end program MarsRoverTest.

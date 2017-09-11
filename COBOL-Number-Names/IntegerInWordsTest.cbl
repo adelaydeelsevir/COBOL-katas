@@ -1,11 +1,6 @@
 identification division.
 program-id. IntegerInWordsTest.
 
-environment division.
-    configuration section.
-        repository.
-            function IntegerInWords.
-
 *> Spell out a number. For example
 
       *> 99 --> ninety nine
@@ -19,13 +14,18 @@ environment division.
              *> twelve thousand,
              *> six hundred and three
 
+environment division.
+configuration section.
+    repository.
+        function IntegerInWords.
+
 data division.
-    working-storage section.
-        01 ExpectedResult pic x(100) value spaces.
-        01 ReturnedResult pic x(100) value spaces.
+working-storage section.
+01 ExpectedResult pic x(100) value spaces.
+01 ReturnedResult pic x(100) value spaces.
 
 procedure division.
-
+Main section.
     move "one hundred" to ExpectedResult
     move IntegerInWords(100) to ReturnedResult
     call "AssertEquals" using ReturnedResult, ExpectedResult, "100 returns 'one hundred'"
@@ -122,6 +122,7 @@ procedure division.
     move IntegerInWords(43112603) to ReturnedResult
     call "AssertEquals" using ReturnedResult, ExpectedResult, "43112603 returns 'forty-three million, one hundred and twelve thousand, six hundred and three'"
 
-    stop run.
+    stop run
+    .
 
 end program IntegerInWordsTest.

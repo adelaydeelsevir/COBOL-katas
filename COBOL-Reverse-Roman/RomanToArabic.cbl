@@ -18,7 +18,7 @@ linkage section.
 01 RomanNumber pic x(40) value spaces.
 
 procedure division using RomanNumber returning ArabicNumber.
-
+Main section.
     initialize ArabicNumber
     perform varying CharacterPosition from 1 by 1 until RomanNumber(CharacterPosition:1) equals space
         move RomanNumber(CharacterPosition:1) to CurrentCharacter
@@ -29,45 +29,46 @@ procedure division using RomanNumber returning ArabicNumber.
             goback
         end-if
 
-        if CurrentCharacter equals "M" and PreviousCharacter not equal to "C"
+        if CurrentCharacter equals "M" and PreviousCharacter not equal to "C" then
             add 1000 to ArabicNumber
         end-if
-        if CurrentCharacter equals "C" and NextCharacter equals "M"
+        if CurrentCharacter equals "C" and NextCharacter equals "M" then
             add 900 to ArabicNumber
         end-if
         if CurrentCharacter equals "C" and NextCharacter not equal to "M" and NextCharacter not equal to "D"
-            and PreviousCharacter not equal to "X"
+            and PreviousCharacter not equal to "X" then
             add 100 to ArabicNumber
         end-if
-        if CurrentCharacter equals "D" and PreviousCharacter not equal to "C"
+        if CurrentCharacter equals "D" and PreviousCharacter not equal to "C" then
             add 500 to ArabicNumber
         end-if
-        if CurrentCharacter equals "C" and NextCharacter equals "D"
+        if CurrentCharacter equals "C" and NextCharacter equals "D" then
             add 400 to ArabicNumber
         end-if
         if CurrentCharacter equals "X" and NextCharacter not equal to "C" and NextCharacter not equal to "L"
-            and PreviousCharacter not equal to "I"
+            and PreviousCharacter not equal to "I" then
             add 10 to ArabicNumber
         end-if
-        if CurrentCharacter equals "X" and NextCharacter equals "C"
+        if CurrentCharacter equals "X" and NextCharacter equals "C" then
             add 90 to ArabicNumber
         end-if
-        if CurrentCharacter equals "L" and PreviousCharacter not equal to "X"
+        if CurrentCharacter equals "L" and PreviousCharacter not equal to "X" then
             add 50 to ArabicNumber
         end-if
-        if CurrentCharacter equals "X" and NextCharacter equals "L"
+        if CurrentCharacter equals "X" and NextCharacter equals "L" then
             add 40 to ArabicNumber
         end-if
-        if CurrentCharacter equals "V" and PreviousCharacter not equal to "I"
+        if CurrentCharacter equals "V" and PreviousCharacter not equal to "I" then
             add 5 to ArabicNumber
         end-if
-        if CurrentCharacter equals "I" and NextCharacter not equal to "V" and NextCharacter not equal to "X"
+        if CurrentCharacter equals "I" and NextCharacter not equal to "V"
+            and NextCharacter not equal to "X" then
             add 1 to ArabicNumber
         end-if
-        if CurrentCharacter equals "I" and NextCharacter equals "V"
+        if CurrentCharacter equals "I" and NextCharacter equals "V" then
             add 4 to ArabicNumber
         end-if
-        if CurrentCharacter equals "I" and NextCharacter equals "X"
+        if CurrentCharacter equals "I" and NextCharacter equals "X" then
             add 9 to ArabicNumber
         end-if
         move CurrentCharacter to PreviousCharacter

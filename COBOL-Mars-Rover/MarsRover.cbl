@@ -3,21 +3,21 @@ program-id. MarsRover.
 
 data division.
 working-storage section.
-    copy GridDimensions
-        replacing GridDimensions by ==GridDimensions is global==.
-    copy RoverPosition
-        replacing RoverPosition by ==RoverPosition is global==.
+copy GridDimensions
+    replacing GridDimensions by ==GridDimensions is global==.
+copy RoverPosition
+    replacing RoverPosition by ==RoverPosition is global==.
 
 local-storage section.
-    01 CurrentInstruction pic 99.
-        88 EndOfSequence value 99.
+01 CurrentInstruction pic 99.
+    88 EndOfSequence value 99.
 
 linkage section.
-    01 Command   pic x any length.
-    01 Parameter pic x any length.
+01 Command   pic x any length.
+01 Parameter pic x any length.
 
 procedure division using Command, Parameter.
-
+Main section.
     evaluate function trim(Command)
         when equals "SetGridSize" move Parameter to GridDimensions
         when equals "GetGridSize" move GridDimensions to Parameter
@@ -25,20 +25,21 @@ procedure division using Command, Parameter.
         when equals "SelectRover" move Parameter to RoverPosition
         when equals "MoveRover" call "MoveMarsRover" using Parameter
     end-evaluate.
-
-    goback.
+    goback
+    .
 
 program-id. MoveMarsRover.
 
 data division.
 working-storage section.
-    01 CurrentInstruction pic 99.
-        88 EndOfSequence value 99.
+01 CurrentInstruction pic 99.
+    88 EndOfSequence value 99.
 
 linkage section.
-    01 MoveSequence pic x any length.
+01 MoveSequence pic x any length.
 
 procedure division using MoveSequence.
+Main section.
     perform with test after varying CurrentInstruction from 1 by 1 until EndOfSequence
         evaluate MoveSequence(CurrentInstruction:1) also true
             when "L" also OrientationIsNorth set OrientationIsWest to true
@@ -56,7 +57,8 @@ procedure division using MoveSequence.
             when other set EndOfSequence to true
         end-evaluate
     end-perform
-    exit program.
+    exit program
+    .
 
 end program MoveMarsRover.
 end program MarsRover.

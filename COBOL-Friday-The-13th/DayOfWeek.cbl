@@ -11,12 +11,13 @@ linkage section.
 01 ReturnedDayOfWeek pic 9 value 0.
 
 procedure division using InputDate returning ReturnedDayOfWeek.
+Main section.
+    if InputDate less than DateBritianAdoptedGregorian then
+        compute ReturnedDayOfWeek = function mod(function integer-of-date(InputDate) 7) - 10
+    else
+        compute ReturnedDayOfWeek = function mod(function integer-of-date(InputDate) 7) + 1
+    end-if
+    goback
+    .
 
-if InputDate less than DateBritianAdoptedGregorian then
-    compute ReturnedDayOfWeek = function mod(function integer-of-date(InputDate) 7) - 10
-else
-    compute ReturnedDayOfWeek = function mod(function integer-of-date(InputDate) 7) + 1
-end-if
-
-goback.
 end function DayOfWeek.

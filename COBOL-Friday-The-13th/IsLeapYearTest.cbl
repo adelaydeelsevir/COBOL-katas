@@ -19,12 +19,11 @@ configuration section.
 
 data division.
 working-storage section.
-
-    01 ExpectedResult pic 9 usage binary.
-    01 ReturnedResult pic 9 usage binary.
+01 ExpectedResult pic 9 usage binary.
+01 ReturnedResult pic 9 usage binary.
 
 procedure division.
-
+Main section.
     move 1 to ExpectedResult
     move IsLeapYear(2001) to ReturnedResult
     call "AssertNotEquals" using ReturnedResult, ExpectedResult, "2001 is not a leap year"
@@ -41,6 +40,7 @@ procedure division.
     move IsLeapYear(2000) to ReturnedResult
     call "AssertEquals" using ReturnedResult, ExpectedResult, "2000 is a leap year"
 
-    stop run.
+    stop run
+    .
 
 end program IsLeapYearTest.

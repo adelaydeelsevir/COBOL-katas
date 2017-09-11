@@ -3,21 +3,20 @@ program-id. MontyHall.
 
 data division.
 working-storage section.
+01 CurrentTime.
+    02 filler   pic 9(4).
+    02 Seed     pic 9(4).
 
-    01 CurrentTime.
-        02 filler   pic 9(4).
-        02 Seed     pic 9(4).
+01 DoorThatHasCar pic 9.
+01 DoorPlayerChooses pic 9.
 
-    01 DoorThatHasCar pic 9.
-    01 DoorPlayerChooses pic 9.
-
-    01 Round pic 9(4).
-    01 NumberOfRoundsToPlay constant 1000.
-    01 WinsWhenNotSwapping pic 9(3) value zero.
-    01 WinsWhenSwapping pic 9(3) value zero.
+01 Round pic 9(4).
+01 NumberOfRoundsToPlay constant 1000.
+01 WinsWhenNotSwapping pic 9(3) value zero.
+01 WinsWhenSwapping pic 9(3) value zero.
 
 procedure division.
-
+Main section.
     accept CurrentTime from time
     compute DoorThatHasCar = function random(Seed)
 
@@ -58,6 +57,7 @@ procedure division.
             end-display
     end-evaluate
 
-    stop run.
+    stop run
+    .
 
 end program MontyHall.
