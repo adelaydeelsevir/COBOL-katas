@@ -1,4 +1,4 @@
-$set preservecase case repository(update ON) *> MF COBOL
+$set preservecase case repository(update ON)
 identification division.
 function-id. orderNumberByAscendingDigits.
 
