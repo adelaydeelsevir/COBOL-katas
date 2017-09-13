@@ -1,34 +1,4 @@
 identification division.
-program-id. Main.
-
-data division.
-working-storage section.
-01 numberToCompute pic 9(9) value zero.
-01 numberOfChains pic 9(3) value zero.
-
-procedure division.
-Main section.
-    display "Solution to Number Chains Kata"
-    display "------------------------------"
-    move 123456789 to numberToCompute
-    display "Computing number chains for " numberToCompute
-    call "computeNumberChain" using numberToCompute numberOfChains
-    display "Number of chains this took was " numberOfChains
-    display "------------------------------"
-    move 1234 to numberToCompute
-    display "Computing number chains for " numberToCompute
-    call "computeNumberChain" using numberToCompute numberOfChains
-    display "Number of chains this took was " numberOfChains
-    display "------------------------------"
-    move 444 to numberToCompute
-    display "Computing number chains for " numberToCompute
-    call "computeNumberChain" using numberToCompute numberOfChains
-    display "Number of chains this took was " numberOfChains
-    stop run
-    .
-end program Main.
-
-identification division.
 program-id. computeNumberChain.
 
 environment division.
@@ -39,15 +9,14 @@ repository.
 
 data division.
 working-storage section.
-01 numberOut pic 9(9).
 01 numberOrderedAscending pic 9(9).
 01 numberOrderedDescending pic 9(9).
 01 result pic 9(9) value zero.
 01 PreviousResultsTable.
     02 PreviousResult occurs 1 to 99 times depending on numberOfChains indexed by numberIdx.
         03 filler pic 9(9).
-01 FILLER pic 9 binary.
-    88 chainIsRepeating value 1 when false is 0.
+01 filler pic 9 binary.
+    88 chainIsRepeating value 1 when set to false is 0.
 
 linkage section.
 01 numberIn pic 9(9).

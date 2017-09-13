@@ -1,9 +1,6 @@
-$set preservecase case repository(update ON)
+$set preservecase case repository(update ON) *> MF COBOL
 identification division.
 function-id. orderNumberByDescendingDigits.
-
-environment division.
-configuration section.
 
 data division.
 working-storage section.
