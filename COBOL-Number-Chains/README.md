@@ -66,11 +66,14 @@ The most original example of this problem that I can find on the net is at http:
 
 You should be using GNU COBOL 2.2 and compile this with COBOL Test Suite to run tests:
 
-```$ cobc -x -free TestNumberChains.cbl computeNumberChain.cbl orderNumberByAscendingDigits.cbl orderNumberByDescendingDigits.cbl ../../COBOL-Test-Suite/AssertEquals.cbl ```
+```
+$ cobc -x -free TestNumberChains.cbl computeNumberChain.cbl orderNumberByAscendingDigits.cbl orderNumberByDescendingDigits.cbl ../../COBOL-Test-Suite/AssertEquals.cbl 
+```
 
 Then:
 
-```$ ./TestNumberChains 
+```
+$ ./TestNumberChains 
 987654321 - 123456789 = 864197532
 987654321 - 123456789 = 864197532
 Passed: 123456789 returns chain count of 2
@@ -81,13 +84,15 @@ Passed: 123456789 returns chain count of 2
 Passed: 1234 returns chain count of 4
 000000444 - 000000444 = 000000000
 000000000 - 000000000 = 000000000
-Passed: 444 returns chain count of 2```
+Passed: 444 returns chain count of 2
+```
 
 ## Compile and run under Microfocus Visual COBOL
 
 Set format to Free and Entry Point to Main and compile, when run displays:
 
-```Solution to Number Chains Kata
+```
+Solution to Number Chains Kata
 ------------------------------
 Computing number chains for 123456789
 987654321 - 123456789 = 864197532
@@ -104,4 +109,5 @@ Number of chains this took was 004
 Computing number chains for 000000444
 000000444 - 000000444 = 000000000
 000000000 - 000000000 = 000000000
-Number of chains this took was 002```
+Number of chains this took was 002
+```
