@@ -60,8 +60,48 @@ Original number was 444
 Chain length 2
 ```
 
-The most original example of this problem that I can find on the net is at http://www.karrels.org/Ed/ACM/ec93/prob_b.html - 1993 East-Central Regionals of the ACM International Collegiate Programming Contest
+The most original example of this problem that I can find on the net is at http://www.karrels.org/Ed/ACM/ec93/prob_b.html - the 1993 East-Central Regionals of the ACM International Collegiate Programming Contest "Problem B:- Number Chains"
 
-Problem B
+## Compile and run under GNU COBOL
 
-Number Chains
+You should be using GNU COBOL 2.2 and compile this with COBOL Test Suite to run tests:
+
+```$ cobc -x -free TestNumberChains.cbl computeNumberChain.cbl orderNumberByAscendingDigits.cbl orderNumberByDescendingDigits.cbl ../../COBOL-Test-Suite/AssertEquals.cbl ```
+
+Then:
+
+```$ ./TestNumberChains 
+987654321 - 123456789 = 864197532
+987654321 - 123456789 = 864197532
+Passed: 123456789 returns chain count of 2
+000004321 - 000001234 = 000003087
+000008730 - 000000378 = 000008352
+000008532 - 000002358 = 000006174
+000007641 - 000001467 = 000006174
+Passed: 1234 returns chain count of 4
+000000444 - 000000444 = 000000000
+000000000 - 000000000 = 000000000
+Passed: 444 returns chain count of 2```
+
+## Compile and run under Microfocus Visual COBOL
+
+Set format to Free and Entry Point to Main and compile, when run displays:
+
+```Solution to Number Chains Kata
+------------------------------
+Computing number chains for 123456789
+987654321 - 123456789 = 864197532
+987654321 - 123456789 = 864197532
+Number of chains this took was 002
+------------------------------
+Computing number chains for 000001234
+000004321 - 000001234 = 000003087
+000008730 - 000000378 = 000008352
+000008532 - 000002358 = 000006174
+000007641 - 000001467 = 000006174
+Number of chains this took was 004
+------------------------------
+Computing number chains for 000000444
+000000444 - 000000444 = 000000000
+000000000 - 000000000 = 000000000
+Number of chains this took was 002```
