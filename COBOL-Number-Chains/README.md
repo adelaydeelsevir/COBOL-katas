@@ -87,7 +87,7 @@ Passed: 1234 returns chain count of 4
 Passed: 444 returns chain count of 2
 ```
 
-## Compile and run under Microfocus Visual COBOL
+## Compile and run under MicroFocus Visual COBOL
 
 Set format to Free and Entry Point to Main and compile, when run displays:
 
