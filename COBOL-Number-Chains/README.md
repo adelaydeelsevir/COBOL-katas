@@ -64,7 +64,7 @@ The most original example of this problem that I can find on the net is at http:
 
 ## Compile and run under GNU COBOL
 
-You should be using GNU COBOL 2.2 and compile this with COBOL Test Suite to run tests:
+You should be using GNU COBOL 2.2 and compile this with COBOL Test Suite - https://github.com/mikebharris/COBOL-Test-Suite - to run tests:
 
 ```
 $ cobc -x -free TestNumberChains.cbl computeNumberChain.cbl orderNumberByAscendingDigits.cbl orderNumberByDescendingDigits.cbl ../../COBOL-Test-Suite/AssertEquals.cbl 
